@@ -1,0 +1,42 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=7 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Run-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Punch"
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+
+[sub_resource type="AnimationNodeTransition" id=6]
+input_count = 3
+xfade_time = 0.5
+input_0/name = "Walking"
+input_0/auto_advance = false
+input_1/name = "Running"
+input_1/auto_advance = false
+input_2/name = "Idle"
+input_2/auto_advance = false
+
+[resource]
+graph_offset = Vector2( -717, 26.5 )
+nodes/Animation/node = SubResource( 3 )
+nodes/Animation/position = Vector2( -140, 200 )
+"nodes/Animation 2/node" = SubResource( 1 )
+"nodes/Animation 2/position" = Vector2( -180, 360 )
+"nodes/Animation 3/node" = SubResource( 2 )
+"nodes/Animation 3/position" = Vector2( -104, 61 )
+nodes/output/position = Vector2( 620, 160 )
+nodes/punch/node = SubResource( 4 )
+nodes/punch/position = Vector2( 160, 340 )
+nodes/punching/node = SubResource( 5 )
+nodes/punching/position = Vector2( 360, 160 )
+nodes/state/node = SubResource( 6 )
+nodes/state/position = Vector2( 140, 120 )
+node_connections = [ "output", 0, "punching", "state", 0, "Animation 3", "state", 1, "Animation", "state", 2, "Animation 2", "punching", 0, "state", "punching", 1, "punch" ]

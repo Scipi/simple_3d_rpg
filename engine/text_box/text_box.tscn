@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/SyndiBox/syndibox.gd" type="Script" id=1]
+[ext_resource path="res://engine/text_box/input_capture.gd" type="Script" id=2]
+[ext_resource path="res://engine/text_box/text_box.gd" type="Script" id=3]
+
+[node name="text_box" type="Control"]
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -2.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = -51.0
+margin_right = 1028.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_area" type="ReferenceRect" parent="."]
+margin_right = 1025.0
+margin_bottom = 178.0
+border_color = Color( 0.247059, 1, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+DIALOG = "NULL TEXT"
+CHARACTER_NAME = "NULL_NAME"
+FONT = "res://addons/SyndiBox/Assets/TextDefault.tres"
+ADVANCE_ACTION = "interact"
+CUSTOM_EFFECTS = "res://addons/SyndiBox/custom.gd"
+
+[node name="input_capture" type="Control" parent="text_area"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_finished" from="text_area" to="." method="text_finished"]

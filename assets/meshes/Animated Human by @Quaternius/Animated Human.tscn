@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/meshes/Animated Human by @Quaternius/Animated Human by @Quaternius/Animated Human.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/meshes/Animated Human by @Quaternius/Animated Human_animation_tree.tres" type="AnimationNodeBlendTree" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.320883
+height = 0.002
+
+[node name="Animated Human" instance=ExtResource( 1 )]
+
+[node name="Skeleton" parent="Human Armature" index="0"]
+bones/11/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Human Armature/Skeleton" index="1"]
+transform = Transform( 0.717712, 0.201537, -0.666535, -0.52426, 0.786383, -0.326733, 0.458303, 0.583938, 0.670054, 1.31479, 1.1971, -3.65693 )
+bone_name = "left_hand"
+
+[node name="damage_collider" type="Area" parent="Human Armature/Skeleton/BoneAttachment" index="0"]
+transform = Transform( 0.997629, 0.0614959, 0.0308739, -0.0660268, 0.981815, 0.17798, -0.0193672, -0.179598, 0.98355, 0.0248219, 0.121033, 0.0395401 )
+monitoring = false
+monitorable = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Human Armature/Skeleton/BoneAttachment/damage_collider" index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+process_mode = 0
+root_motion_track = NodePath("Human Armature/Skeleton:root")
+parameters/punching/active = false
+parameters/state/current = 2
